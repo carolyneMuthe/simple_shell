@@ -11,7 +11,7 @@
 #include <errno.h>
 
 /* Function Prototypes */
-void execute_command(char **args);
+void execute_command(char *command);
 char *read_line(void);
 char **split_line(char *line);
 void shell_loop(void);
