@@ -2,23 +2,19 @@
 
 /**
  * execute_command - Executes a command
- * @command: The command to execute
+ * @args: array of arguments to execute
  */
-void execute_command(char *command)
+void execute_command(char **args)
 {
 	pid_t pid;
 	int status;
-	char *args[2];
-
-	 args[0] = command;
-	 args[1] = NULL;
 
 	pid = fork();
 	if (pid == 0)  /* Child process */
 	{
-		if (execve(command, args, NULL) == -1)
+		if (execve(args[0], args, environ) == -1)
 		{
-			perror(command);
+			perror(args[0]);
 			_exit(EXIT_FAILURE);
 		}
 	}

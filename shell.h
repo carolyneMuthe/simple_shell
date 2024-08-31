@@ -10,8 +10,9 @@
 #include <sys/stat.h>
 #include <errno.h>
 
-/* Function Prototypes */
-void execute_command(char *command);
+extern char **environ;
+
+void execute_command(char **argsd);
 char *read_line(void);
 char **split_line(char *line);
 void shell_loop(void);

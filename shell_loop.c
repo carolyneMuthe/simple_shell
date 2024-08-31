@@ -1,8 +1,4 @@
 #include "shell.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
 
 /**
  * shell_loop - Main loop for the shell
@@ -12,7 +8,7 @@
 void shell_loop(void)
 {
 	char *line;
-	char *command;
+	char **args;
 	int status = 1;
 
 	while (status)
@@ -26,18 +22,21 @@ void shell_loop(void)
 				write(STDOUT_FILENO, "\n", 1);
 			break;
 		}
-		command = strtok(line, "\n");
-		if (command == NULL)
+		args = split_line(line);
+		if (args[0] == NULL)
 		{
 			free(line);
+			free(args);
 			continue;
 		}
-		if (strcmp(command, "exit") == 0)
+		if (strcmp(args[0], "exit") == 0)
 		{
 			free(line);
+			free(args);
 			break;
 		}
-		execute_command(command);
+		execute_command(args);
+		free(args);
 		free(line);
 	}
 }
