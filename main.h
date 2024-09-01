@@ -15,7 +15,7 @@
 #define PROMPT "Nana$ "
 #define PATH_MAX 1024
 /* Function prototypes */
-void execute_command(char *cmd, char **env);
+void exec_command(char *cmd, char **env);
 char *read_in(void);
 char *trim_ws(char *str);
 void printerr(char *cmd);

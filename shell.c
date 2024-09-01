@@ -26,7 +26,7 @@ void shell(char **env)
 
 		if (trline[0] != '\0')
 		{
-			execute_command(trline, env);
+			exec_command(trline, env);
 		}
 
 		free(line);
